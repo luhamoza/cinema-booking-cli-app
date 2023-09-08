@@ -10,13 +10,12 @@ func main(){
 	fmt.Printf("the data type for eventName is %T, for numberOfTickets is %T, for remainingTickets is %T\n",eventName,numberOfTickets,remainingTickets)
 
 	fmt.Printf("Hello, welcome to our booking application for %v\n", eventName)
-	fmt.Printf("We have only %v tickets and the the remaining number of tickets is %v\n",numberOfTickets, remainingTickets)
 	fmt.Println("Book your ticket now, don't miss this awesome movie!")
 
 	var userFirstName string
 	var userLastName string
 	var userEmail string
-	var userTickets int
+	var userTickets uint
 
 	fmt.Println("Please enter your first name:")
 	fmt.Scan(&userFirstName)
@@ -27,6 +26,9 @@ func main(){
 	fmt.Println("Number of tickets you want to purchase")
 	fmt.Scan(&userTickets)
 
+	remainingTickets = remainingTickets - userTickets
+
 	fmt.Printf("Hello %v %v and welcome to our booking application!\n", userFirstName,userLastName)
 	fmt.Printf("You (%v) just bought %v tickets.\n", userEmail, userTickets)
+	fmt.Printf("We have only %v tickets and the the remaining number of tickets is %v\n",numberOfTickets, remainingTickets)
 }
