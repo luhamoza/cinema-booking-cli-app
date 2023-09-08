@@ -6,6 +6,7 @@ func main(){
 	eventName := "Tayangan Perdana Fast Furios 18: The Family" // eventName := is equal to var eventName string =
 	const numberOfTickets int = 50 // fixed number
 	var remainingTickets uint = 50 // remaining ticket can't be negative
+	var userBookings [50]string
 
 	fmt.Printf("the data type for eventName is %T, for numberOfTickets is %T, for remainingTickets is %T\n",eventName,numberOfTickets,remainingTickets)
 
@@ -27,6 +28,12 @@ func main(){
 	fmt.Scan(&userTickets)
 
 	remainingTickets = remainingTickets - userTickets
+	userBookings[0] = userFirstName + " " + userLastName
+
+	fmt.Printf("The whole array:%v\n", userBookings)
+	fmt.Printf("The first value of the array: %v\n", userBookings[0])
+	fmt.Printf("The type of the array: %T\n", userBookings)
+	fmt.Printf("The length of the array: %v\n", len(userBookings))
 
 	fmt.Printf("Hello %v %v and welcome to our booking application!\n", userFirstName,userLastName)
 	fmt.Printf("You (%v) just bought %v tickets.\n", userEmail, userTickets)
