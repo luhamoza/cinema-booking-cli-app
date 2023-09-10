@@ -3,13 +3,14 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strings"
+	"strconv"
 )
 
 const numberOfTickets int = 50                                        // fixed number
 var eventName string = "Tayangan Perdana Fast Furious 18: The Family" // eventName := is equal to var eventName string =
 var remainingTickets uint = 50                                        // remaining ticket can't be negative
-var userBookings = []string{}                                         // declare slice
+// var userBookings = []string{}                                      // declare empty slice
+var userBookings = make([]map[string]string, 0) // declare empty list of map
 
 func main() {
 
@@ -71,17 +72,27 @@ func getUserInput() (string, string, string, uint) {
 
 func bookingTicket(tickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - tickets
-	userBookings = append(userBookings, firstName+" "+lastName+",")
+
+	// map for user data
+	var userData = make(map[string]string)
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["ticket"] = strconv.FormatUint(uint64(tickets), 10)
+
+	userBookings = append(userBookings, userData)
 	fmt.Printf("Hello %v %v and welcome to our booking application!\n", firstName, lastName)
 	fmt.Printf("You (%v) just bought %v tickets.\n", email, tickets)
 	fmt.Printf("We have only %v tickets and the the remaining number of tickets is %v\n", numberOfTickets, remainingTickets)
+	fmt.Printf("List of booking is:%v \n", userBookings)
 }
 
 func getUserFirstName() []string {
 	userFirstNames := []string{}
 	for _, booking := range userBookings {
-		var names = strings.Fields(booking)
-		var firstName = names[0]
+		// var names = strings.Fields(booking)
+		// var firstName = names[0]
+		var firstName = booking["firstName"]
 		userFirstNames = append(userFirstNames, firstName+",")
 	}
 	return userFirstNames
