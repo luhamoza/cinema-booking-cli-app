@@ -9,7 +9,7 @@ func main() {
 	eventName := "Tayangan Perdana Fast Furious 18: The Family" // eventName := is equal to var eventName string =
 	const numberOfTickets int = 50                              // fixed number
 	var remainingTickets uint = 50                              // remaining ticket can't be negative
-	userBookings := []string{}                                  //declare slice
+	userBookings := []string{}                                  // declare slice
 
 	fmt.Printf("Hello, welcome to our booking application for %v\n", eventName)
 	fmt.Println("Book your ticket now, don't miss this awesome movie!")
@@ -29,7 +29,11 @@ func main() {
 		fmt.Println("Number of tickets you want to purchase")
 		fmt.Scan(&userTickets)
 
-		if userTickets <= remainingTickets {
+		validUserName := len(userFirstName) >= 2 && len(userLastName) >= 2
+		validEmail := strings.Contains(userEmail, "@")
+		validNumberTickets := remainingTickets >= userTickets && userTickets > 0
+
+		if validUserName && validEmail && validNumberTickets {
 			remainingTickets = remainingTickets - userTickets
 			userBookings = append(userBookings, userFirstName+" "+userLastName+",")
 
@@ -51,9 +55,18 @@ func main() {
 				break
 			}
 		} else {
-			fmt.Printf("You cannot book %v tickets because we only have %v tickets\n", userTickets, remainingTickets)
-			fmt.Printf("Please try again with number of tickets less than %v.\n", remainingTickets)
-			continue
+
+			if !validUserName {
+				fmt.Println("You have entered first name or last name too short")
+			}
+			if !validEmail {
+				fmt.Println("Please enter valid email with @ sign")
+			}
+			if !validNumberTickets {
+				fmt.Printf("Please try again with number of tickets less than %v.\n", remainingTickets)
+				fmt.Printf("You cannot book %v tickets because we only have %v tickets\n", userTickets, remainingTickets)
+			}
+
 		}
 
 	}
