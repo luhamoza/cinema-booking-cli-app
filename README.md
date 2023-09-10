@@ -1,4 +1,4 @@
-# Cinema Booking CLI App
+# Cinema Booking Application
 ## Description
 
 Learning fundamentals of Go by builiding cinema booking cli application.
@@ -13,12 +13,12 @@ Learning fundamentals of Go by builiding cinema booking cli application.
 ### Clone
 
 ```bash
-git clone https://github.com/username/project.git
-cd project
+git clone https://github.com/luhamoza/cinema-booking-cli-app.git
+cd cinema-booking-cli-app
 ```
-
 ### Build
 
 ```bash
 go build
+go run .
 ```
