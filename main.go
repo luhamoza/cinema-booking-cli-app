@@ -3,14 +3,21 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strconv"
 )
 
 const numberOfTickets int = 50                                        // fixed number
 var eventName string = "Tayangan Perdana Fast Furious 18: The Family" // eventName := is equal to var eventName string =
 var remainingTickets uint = 50                                        // remaining ticket can't be negative
-// var userBookings = []string{}                                      // declare empty slice
-var userBookings = make([]map[string]string, 0) // declare empty list of map
+// var userBookings = []string{} // declare empty slice
+// var userBookings = make([]map[string]string, 0) // declare empty list of map
+var userBookings = make([]UserData, 0) // declare empty list of struct
+
+type UserData struct {
+	firstName string
+	lastName  string
+	email     string
+	ticket    uint
+}
 
 func main() {
 
@@ -74,11 +81,19 @@ func bookingTicket(tickets uint, firstName string, lastName string, email string
 	remainingTickets = remainingTickets - tickets
 
 	// map for user data
-	var userData = make(map[string]string)
-	userData["firstName"] = firstName
-	userData["lastName"] = lastName
-	userData["email"] = email
-	userData["ticket"] = strconv.FormatUint(uint64(tickets), 10)
+	// var userData = make(map[string]string)
+	// userData["firstName"] = firstName
+	// userData["lastName"] = lastName
+	// userData["email"] = email
+	// userData["ticket"] = strconv.FormatUint(uint64(tickets), 10)
+
+	// struct for user data
+	var userData = UserData{
+		firstName: firstName,
+		lastName:  lastName,
+		email:     email,
+		ticket:    tickets,
+	}
 
 	userBookings = append(userBookings, userData)
 	fmt.Printf("Hello %v %v and welcome to our booking application!\n", firstName, lastName)
@@ -92,7 +107,7 @@ func getUserFirstName() []string {
 	for _, booking := range userBookings {
 		// var names = strings.Fields(booking)
 		// var firstName = names[0]
-		var firstName = booking["firstName"]
+		var firstName = booking.firstName
 		userFirstNames = append(userFirstNames, firstName+",")
 	}
 	return userFirstNames
