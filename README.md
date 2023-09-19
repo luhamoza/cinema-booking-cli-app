@@ -16,9 +16,8 @@ Learning fundamentals of Go by builiding cinema booking cli application.
 git clone https://github.com/luhamoza/cinema-booking-cli-app.git
 cd cinema-booking-cli-app
 ```
-### Build
+### Run
 
 ```bash
-go build
 go run .
 ```
